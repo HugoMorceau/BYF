@@ -6,7 +6,15 @@ import { AppService } from './app.service';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      configFile: 'src/config/ormconfig.json',
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'byf',
+      password: 'byf',
+      database: 'byf',
+      entities: ['src/entity/**/*.ts'],
+      migrations: ['src/migration/**/*.ts'],
+      synchronize: false,
     }),
   ],
   controllers: [AppController],
