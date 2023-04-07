@@ -14,7 +14,14 @@ export class UsersService {
     return this.usersRepository.save(user);
   }
 
-  async findAll(): Promise<User[]> {
+  findAll(): Promise<User[]> {
     return this.usersRepository.find();
+  }
+
+  findOne(id: number): Promise<User> {
+    // return this.usersRepository.findOne(id);
+    return this.usersRepository.findOneOrFail({
+      where: { id },
+    });
   }
 }

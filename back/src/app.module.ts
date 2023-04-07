@@ -8,7 +8,7 @@ import { AppService } from './app.service';
 
 import { dataSourceOptions } from '../ormconfig';
 import { UsersModule } from './module/users/users.module';
-import { UsersResolver } from './module/users/users.resolver';
+import { CelebritiesModule } from './module/celebrities/celebrities.module';
 
 @Module({
   imports: [
@@ -18,6 +18,7 @@ import { UsersResolver } from './module/users/users.resolver';
       autoSchemaFile: 'schema.gql',
     }),
     UsersModule,
+    CelebritiesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
