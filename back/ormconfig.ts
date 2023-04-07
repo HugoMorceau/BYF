@@ -9,7 +9,7 @@ export const dataSourceOptions: DataSourceOptions = {
   database: 'byf',
   entities: ['dist/**/*.entity.js'],
   migrations: ['dist/**/migration/*.js'],
-  synchronize: false,
+  synchronize: true,
 };
 
 export const AppDataSource = new DataSource(dataSourceOptions);

@@ -4,8 +4,8 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 @Entity()
 @ObjectType()
 export class User {
-  @Field(() => Int)
-  @PrimaryGeneratedColumn()
+  @Field(() => Int) // GraphQL
+  @PrimaryGeneratedColumn() // TypeORM
   id: number;
 
   @Field()
@@ -19,4 +19,8 @@ export class User {
   @Field()
   @Column()
   email: string;
+
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  description?: string;
 }
