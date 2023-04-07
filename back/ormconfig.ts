@@ -1,8 +1,6 @@
-import { DataSource } from 'typeorm';
-import { join } from 'path';
-import { User } from './src/entity/user.entity';
+import { DataSource, DataSourceOptions } from 'typeorm';
 
-export const AppDataSource = new DataSource({
+export const dataSourceOptions: DataSourceOptions = {
   type: 'postgres',
   host: 'localhost',
   port: 5432,
@@ -10,11 +8,8 @@ export const AppDataSource = new DataSource({
   password: 'byf',
   database: 'byf',
   entities: ['dist/**/*.entity.js'],
-  // entities: [User],
-  // entities: ['d ist/**/*.entity.js'],
-  // entities: ['src/entity/*.ts'],
-  // entities: [join(__dirname, '**', '*.entity.{ts,js}')],
-  // migrations: ['src/migration/*.ts'],
-  migrations: ['dist/migration/*.js'],
+  migrations: ['dist/**/migration/*.js'],
   synchronize: false,
-});
+};
+
+export const AppDataSource = new DataSource(dataSourceOptions);
