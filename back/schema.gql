@@ -10,5 +10,5 @@ type User {
 }
 
 type Query {
-  pets: [User!]!
+  users: [User!]!
 }

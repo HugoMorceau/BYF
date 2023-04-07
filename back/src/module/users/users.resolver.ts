@@ -7,7 +7,7 @@ export class UsersResolver {
   constructor(private usersService: UsersService) {}
 
   @Query(() => [User])
-  pets(): Promise<User[]> {
+  users(): Promise<User[]> {
     return this.usersService.findAll();
   }
 }
