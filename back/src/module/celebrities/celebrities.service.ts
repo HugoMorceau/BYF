@@ -15,9 +15,13 @@ export class CelebritiesService {
     private readonly usersService: UsersService,
   ) {}
 
-  create(createCelebrityInput: CreateCelebrityInput): Promise<Celebrity> {
+  create(
+    createCelebrityInput: CreateCelebrityInput,
+    createdBy: number,
+  ): Promise<Celebrity> {
     const newCelebrity =
       this.celebritiesRepository.create(createCelebrityInput);
+    newCelebrity.createdBy = createdBy;
     return this.celebritiesRepository.save(newCelebrity);
   }
 

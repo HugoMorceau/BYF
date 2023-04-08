@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Celebrity } from 'src/module/celebrities/entities/celebrity.entity';
 
-@Entity()
+@Entity({ name: 'users' })
 @ObjectType()
 export class User {
   @Field(() => Int) // GraphQL

@@ -27,11 +27,22 @@ type User {
   celebrity: [Celebrity!]
 }
 
+type Organization {
+  id: Int!
+  firstName: String!
+  lastName: String!
+  birthDate: DateTime!
+  description: String
+  userId: Int
+}
+
 type Query {
   users: [User!]!
   getUser(id: Int!): User!
   celebrities: [Celebrity!]!
   celebrity(id: Int!): Celebrity!
+  organizations: [Organization!]!
+  organization(id: Int!): Organization!
 }
 
 type Mutation {
@@ -39,6 +50,9 @@ type Mutation {
   createCelebrity(createCelebrityInput: CreateCelebrityInput!): Celebrity!
   updateCelebrity(updateCelebrityInput: UpdateCelebrityInput!): Celebrity!
   removeCelebrity(id: Int!): Celebrity!
+  createOrganization(createOrganizationInput: CreateOrganizationInput!): Organization!
+  updateOrganization(updateOrganizationInput: UpdateOrganizationInput!): Organization!
+  removeOrganization(id: Int!): Organization!
 }
 
 input CreateUserInput {
@@ -63,5 +77,16 @@ input UpdateCelebrityInput {
   birthDate: DateTime
   description: String
   userId: Int
+  id: Int!
+}
+
+input CreateOrganizationInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateOrganizationInput {
+  """Example field (placeholder)"""
+  exampleField: Int
   id: Int!
 }

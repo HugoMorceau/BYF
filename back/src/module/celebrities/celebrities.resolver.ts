@@ -21,7 +21,8 @@ export class CelebritiesResolver {
   createCelebrity(
     @Args('createCelebrityInput') createCelebrityInput: CreateCelebrityInput,
   ) {
-    return this.celebritiesService.create(createCelebrityInput);
+    const createdBy = 1; // todo get userId from context
+    return this.celebritiesService.create(createCelebrityInput, createdBy);
   }
 
   @Query(() => [Celebrity], { name: 'celebrities' })

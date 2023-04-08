@@ -3,7 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { User } from 'src/module/users/user.entity';
 import { AuditableEntity } from 'src/module/shared/entities/auditable.entity';
 
-@Entity()
+@Entity({ name: 'celebrities' })
 @ObjectType()
 export class Celebrity extends AuditableEntity {
   @Field(() => Int) // GraphQL
