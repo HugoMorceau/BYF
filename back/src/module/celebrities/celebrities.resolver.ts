@@ -9,7 +9,9 @@ export class CelebritiesResolver {
   constructor(private readonly celebritiesService: CelebritiesService) {}
 
   @Mutation(() => Celebrity)
-  createCelebrity(@Args('createCelebrityInput') createCelebrityInput: CreateCelebrityInput) {
+  createCelebrity(
+    @Args('createCelebrityInput') createCelebrityInput: CreateCelebrityInput,
+  ) {
     return this.celebritiesService.create(createCelebrityInput);
   }
 
@@ -24,8 +26,13 @@ export class CelebritiesResolver {
   }
 
   @Mutation(() => Celebrity)
-  updateCelebrity(@Args('updateCelebrityInput') updateCelebrityInput: UpdateCelebrityInput) {
-    return this.celebritiesService.update(updateCelebrityInput.id, updateCelebrityInput);
+  updateCelebrity(
+    @Args('updateCelebrityInput') updateCelebrityInput: UpdateCelebrityInput,
+  ) {
+    return this.celebritiesService.update(
+      updateCelebrityInput.id,
+      updateCelebrityInput,
+    );
   }
 
   @Mutation(() => Celebrity)

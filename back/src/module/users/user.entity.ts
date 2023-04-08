@@ -20,6 +20,10 @@ export class User {
   @Column()
   email: string;
 
+  @Field()
+  @Column()
+  birthDate: Date;
+
   @Field({ nullable: true })
   @Column({ nullable: true })
   description?: string;
