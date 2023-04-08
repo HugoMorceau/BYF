@@ -1,11 +1,9 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { User } from 'src/module/users/user.entity';
-import { AuditableEntity } from 'src/module/shared/entities/auditable.entity';
 
 @Entity()
 @ObjectType()
-export class Celebrity extends AuditableEntity {
+export class Organization {
   @Field(() => Int) // GraphQL
   @PrimaryGeneratedColumn() // TypeORM
   id: number;
@@ -30,9 +28,4 @@ export class Celebrity extends AuditableEntity {
   @Field(() => Int, { nullable: true })
   @Column({ nullable: true })
   userId?: number;
-
-  // Associated User if any
-  @ManyToOne(() => User, (user) => user.celebrity)
-  @Field(() => User, { nullable: true })
-  user?: User;
 }

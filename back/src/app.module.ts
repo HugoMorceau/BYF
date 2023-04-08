@@ -9,6 +9,7 @@ import { AppService } from './app.service';
 import { dataSourceOptions } from '../ormconfig';
 import { UsersModule } from './module/users/users.module';
 import { CelebritiesModule } from './module/celebrities/celebrities.module';
+import { OrganizationsModule } from './module/organizations/organizations.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { CelebritiesModule } from './module/celebrities/celebrities.module';
     }),
     UsersModule,
     CelebritiesModule,
+    OrganizationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
