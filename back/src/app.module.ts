@@ -10,6 +10,7 @@ import { dataSourceOptions } from '../ormconfig';
 import { UsersModule } from './module/users/users.module';
 import { CelebritiesModule } from './module/celebrities/celebrities.module';
 import { OrganizationsModule } from './module/organizations/organizations.module';
+import { PredictionsModule } from './module/predictions/predictions.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { OrganizationsModule } from './module/organizations/organizations.module
     UsersModule,
     CelebritiesModule,
     OrganizationsModule,
+    PredictionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
