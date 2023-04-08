@@ -1,6 +1,15 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  Int,
+  Parent,
+  ResolveField,
+} from '@nestjs/graphql';
 import { CelebritiesService } from './celebrities.service';
 import { Celebrity } from './entities/celebrity.entity';
+import { User } from 'src/module/users/user.entity';
 import { CreateCelebrityInput } from './dto/create-celebrity.input';
 import { UpdateCelebrityInput } from './dto/update-celebrity.input';
 
@@ -23,6 +32,10 @@ export class CelebritiesResolver {
   @Query(() => Celebrity, { name: 'celebrity' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.celebritiesService.findOne(id);
+  }
+  @ResolveField(() => User)
+  user(@Parent() celebrity: Celebrity): Promise<User> {
+    return this.celebritiesService.getUser(celebrity.userId);
   }
 
   @Mutation(() => Celebrity)
