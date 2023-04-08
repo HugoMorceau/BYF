@@ -1,5 +1,6 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { User } from 'src/module/users/user.entity';
 
 @Entity()
 @ObjectType()
@@ -26,8 +27,12 @@ export class Celebrity {
   @Column({ nullable: true })
   description?: string;
 
+  @Column({ nullable: true })
+  @Field(() => Int, { nullable: true })
+  userId?: number;
+
   // Associated User if any
-  @Field(() => Int)
-  @Column()
-  userId: number;
+  @ManyToOne(() => User, (user) => user.celebrity)
+  @Field(() => User, { nullable: true })
+  user?: User;
 }

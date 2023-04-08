@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Celebrity } from 'src/module/celebrities/entities/celebrity.entity';
 
 @Entity()
 @ObjectType()
@@ -27,4 +28,8 @@ export class User {
   @Field({ nullable: true })
   @Column({ nullable: true })
   description?: string;
+
+  @OneToMany(() => Celebrity, (celebrity) => celebrity.user)
+  @Field(() => [Celebrity], { nullable: true })
+  celebrity?: Celebrity[];
 }
