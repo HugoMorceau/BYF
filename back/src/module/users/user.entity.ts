@@ -1,11 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Celebrity } from 'src/module/celebrities/entities/celebrity.entity';
 
 @Entity()
 @ObjectType()
 export class User {
-  @Field(() => Int)
-  @PrimaryGeneratedColumn()
+  @Field(() => Int) // GraphQL
+  @PrimaryGeneratedColumn() // TypeORM
   id: number;
 
   @Field()
@@ -19,4 +20,16 @@ export class User {
   @Field()
   @Column()
   email: string;
+
+  @Field()
+  @Column()
+  birthDate: Date;
+
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  description?: string;
+
+  @OneToMany(() => Celebrity, (celebrity) => celebrity.user)
+  @Field(() => [Celebrity], { nullable: true })
+  celebrity?: Celebrity[];
 }
