@@ -9,7 +9,10 @@ export class OrganizationsResolver {
   constructor(private readonly organizationsService: OrganizationsService) {}
 
   @Mutation(() => Organization)
-  createOrganization(@Args('createOrganizationInput') createOrganizationInput: CreateOrganizationInput) {
+  createOrganization(
+    @Args('createOrganizationInput')
+    createOrganizationInput: CreateOrganizationInput,
+  ) {
     return this.organizationsService.create(createOrganizationInput);
   }
 
@@ -24,8 +27,14 @@ export class OrganizationsResolver {
   }
 
   @Mutation(() => Organization)
-  updateOrganization(@Args('updateOrganizationInput') updateOrganizationInput: UpdateOrganizationInput) {
-    return this.organizationsService.update(updateOrganizationInput.id, updateOrganizationInput);
+  updateOrganization(
+    @Args('updateOrganizationInput')
+    updateOrganizationInput: UpdateOrganizationInput,
+  ) {
+    return this.organizationsService.update(
+      updateOrganizationInput.id,
+      updateOrganizationInput,
+    );
   }
 
   @Mutation(() => Organization)

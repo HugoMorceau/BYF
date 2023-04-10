@@ -4,12 +4,12 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  ManyToMany,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { User } from 'src/module/users/user.entity';
-import { Organization } from 'src/module/organizations/entities/organization.entity';
 import { AuditableEntity } from 'src/module/shared/entities/auditable.entity';
+import { CelebrityOrganization } from 'src/module/celebrities-organizations/entities/celebrity-organization.entity';
 
 @Entity({ name: 'celebrities' })
 @ObjectType()
@@ -46,7 +46,10 @@ export class Celebrity extends AuditableEntity {
   @Field(() => User, { nullable: true })
   user?: User;
 
-  // @ManyToMany(() => Organization, (organization) => organization.celebrities)
-  // @Field(() => [Organization], { nullable: true })
-  // organizations: Organization[];
+  @OneToMany(
+    () => CelebrityOrganization,
+    (celebrityOrganization) => celebrityOrganization.celebrity,
+  )
+  @Field(() => [CelebrityOrganization], { nullable: true })
+  celebrityOrganizations: CelebrityOrganization[];
 }

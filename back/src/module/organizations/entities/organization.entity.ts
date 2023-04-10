@@ -1,12 +1,6 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToMany,
-  JoinTable,
-} from 'typeorm';
-import { Celebrity } from 'src/module/celebrities/entities/celebrity.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { CelebrityOrganization } from 'src/module/celebrities-organizations/entities/celebrity-organization.entity';
 
 @Entity()
 @ObjectType()
@@ -36,8 +30,10 @@ export class Organization {
   @Column({ nullable: true })
   userId?: number;
 
-  @ManyToMany(() => Celebrity, (celebrity) => celebrity.organizations)
-  @JoinTable()
-  @Field(() => [Celebrity], { nullable: true })
-  celebrities: Celebrity[];
+  @OneToMany(
+    () => CelebrityOrganization,
+    (celebrityOrganization) => celebrityOrganization.organization,
+  )
+  @Field(() => [CelebrityOrganization], { nullable: true })
+  celebrityOrganizations: CelebrityOrganization[];
 }
