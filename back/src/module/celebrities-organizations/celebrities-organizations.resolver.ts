@@ -1,16 +1,16 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { CelebritiesOrganizationsService } from './celebrities-organizations.service';
-import { CelebritiesOrganization } from './entities/celebrity-organization.entity';
+import { CelebrityOrganization } from './entities/celebrity-organization.entity';
 import { CreateCelebritiesOrganizationInput } from './dto/create-celebrity-organization.input';
 import { UpdateCelebritiesOrganizationInput } from './dto/update-celebrity-organization.input';
 
-@Resolver(() => CelebritiesOrganization)
+@Resolver(() => CelebrityOrganization)
 export class CelebritiesOrganizationsResolver {
   constructor(
     private readonly celebritiesOrganizationsService: CelebritiesOrganizationsService,
   ) {}
 
-  @Mutation(() => CelebritiesOrganization)
+  @Mutation(() => CelebrityOrganization)
   createCelebritiesOrganization(
     @Args('createCelebritiesOrganizationInput')
     createCelebritiesOrganizationInput: CreateCelebritiesOrganizationInput,
@@ -20,17 +20,17 @@ export class CelebritiesOrganizationsResolver {
     );
   }
 
-  @Query(() => [CelebritiesOrganization], { name: 'celebritiesOrganizations' })
+  @Query(() => [CelebrityOrganization], { name: 'celebritiesOrganizations' })
   findAll() {
     return this.celebritiesOrganizationsService.findAll();
   }
 
-  @Query(() => CelebritiesOrganization, { name: 'celebritiesOrganization' })
+  @Query(() => CelebrityOrganization, { name: 'celebritiesOrganization' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.celebritiesOrganizationsService.findOne(id);
   }
 
-  @Mutation(() => CelebritiesOrganization)
+  @Mutation(() => CelebrityOrganization)
   updateCelebritiesOrganization(
     @Args('updateCelebritiesOrganizationInput')
     updateCelebritiesOrganizationInput: UpdateCelebritiesOrganizationInput,
@@ -41,7 +41,7 @@ export class CelebritiesOrganizationsResolver {
     );
   }
 
-  @Mutation(() => CelebritiesOrganization)
+  @Mutation(() => CelebrityOrganization)
   removeCelebritiesOrganization(@Args('id', { type: () => Int }) id: number) {
     return this.celebritiesOrganizationsService.remove(id);
   }
