@@ -36,6 +36,22 @@ type Organization {
   userId: Int
 }
 
+type Prediction {
+  id: Int!
+  title: String!
+  description: String!
+
+  """The date at which the prediction is supposed to happen"""
+  predictedDate: DateTime!
+
+  """The date at which the prediction was fulfilled"""
+  fulfilledDate: DateTime
+
+  """The date at which the prediction was made"""
+  predictionDate: DateTime!
+  confidenceLevel: Float
+}
+
 type Query {
   users: [User!]!
   getUser(id: Int!): User!
@@ -43,6 +59,8 @@ type Query {
   celebrity(id: Int!): Celebrity!
   organizations: [Organization!]!
   organization(id: Int!): Organization!
+  predictions: [Prediction!]!
+  prediction(id: Int!): Prediction!
 }
 
 type Mutation {
@@ -53,6 +71,9 @@ type Mutation {
   createOrganization(createOrganizationInput: CreateOrganizationInput!): Organization!
   updateOrganization(updateOrganizationInput: UpdateOrganizationInput!): Organization!
   removeOrganization(id: Int!): Organization!
+  createPrediction(createPredictionInput: CreatePredictionInput!): Prediction!
+  updatePrediction(updatePredictionInput: UpdatePredictionInput!): Prediction!
+  removePrediction(id: Int!): Prediction!
 }
 
 input CreateUserInput {
@@ -86,6 +107,17 @@ input CreateOrganizationInput {
 }
 
 input UpdateOrganizationInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreatePredictionInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdatePredictionInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!
