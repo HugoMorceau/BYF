@@ -1,10 +1,11 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { CelebrityOrganization } from 'src/module/celebrities-organizations/entities/celebrity-organization.entity';
+import { AuditableEntity } from 'src/module/shared/entities/auditable.entity';
 
-@Entity()
+@Entity({ name: 'organizations' })
 @ObjectType()
-export class Organization {
+export class Organization extends AuditableEntity {
   @Field(() => Int) // GraphQL
   @PrimaryGeneratedColumn() // TypeORM
   id: number;

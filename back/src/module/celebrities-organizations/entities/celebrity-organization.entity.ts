@@ -10,7 +10,7 @@ import { AuditableEntity } from 'src/module/shared/entities/auditable.entity';
 import { Celebrity } from 'src/module/celebrities/entities/celebrity.entity';
 import { Organization } from 'src/module/organizations/entities/organization.entity';
 
-@Entity()
+@Entity({ name: 'celebrities_organizations' })
 @ObjectType()
 export class CelebrityOrganization extends AuditableEntity {
   @Field()
