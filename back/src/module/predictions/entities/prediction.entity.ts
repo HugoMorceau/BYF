@@ -1,9 +1,11 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Celebrity } from 'src/module/celebrities/entities/celebrity.entity';
+import { AuditableEntity } from 'src/module/shared/entities/auditable.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 
 @Entity({ name: 'predictions' })
 @ObjectType()
-export class Prediction {
+export class Prediction extends AuditableEntity {
   @Field(() => Int)
   @PrimaryGeneratedColumn()
   id: number;
@@ -36,6 +38,14 @@ export class Prediction {
   @Field({ nullable: true })
   @Column({ nullable: true })
   confidenceLevel?: number;
+
+  // Prediction 0,1 - 0,n Celebrity
+  @ManyToOne(() => Celebrity, (celebrity) => celebrity.predictions)
+  @Field(() => Celebrity)
+  celebrity: Celebrity;
+
+  // Prediction 0,n - 0,n Evidence
+  // Prediction 0,n - 1,1 PredictionEvidence
 
   // TODO: Tags relation
 }

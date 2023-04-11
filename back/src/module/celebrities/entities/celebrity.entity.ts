@@ -4,12 +4,12 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  JoinColumn,
   OneToMany,
 } from 'typeorm';
 import { User } from 'src/module/users/user.entity';
 import { AuditableEntity } from 'src/module/shared/entities/auditable.entity';
 import { CelebrityOrganization } from 'src/module/celebrities-organizations/entities/celebrity-organization.entity';
+import { Prediction } from 'src/module/predictions/entities/prediction.entity';
 
 @Entity({ name: 'celebrities' })
 @ObjectType()
@@ -39,16 +39,23 @@ export class Celebrity extends AuditableEntity {
   @Column({ nullable: true })
   userId?: number;
 
-  // Associated User if any
+  // Celebrity 0,1 - 0,n Users
   // If the user is deleted, the celebrity.user will be set to null
   @ManyToOne(() => User, (user) => user.celebrity, { onDelete: 'SET NULL' })
   @Field(() => User, { nullable: true })
   user?: User;
 
+  // Celebrity 0,n - 0,n Organization
+  // Celebrity 0,n - 1,1 CelebrityOrganization
   @OneToMany(
     () => CelebrityOrganization,
     (celebrityOrganization) => celebrityOrganization.celebrity,
   )
   @Field(() => [CelebrityOrganization], { nullable: true })
   celebrityOrganizations: CelebrityOrganization[];
+
+  // Celebrity 0,n - 0,1 Prediction
+  @OneToMany(() => Prediction, (prediction) => prediction.celebrity)
+  @Field(() => [Prediction], { nullable: true })
+  predictions: Prediction[];
 }
