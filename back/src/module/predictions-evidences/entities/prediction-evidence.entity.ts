@@ -2,11 +2,17 @@ import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Evidence } from 'src/module/evidences/entities/evidence.entity';
 import { Prediction } from 'src/module/predictions/entities/prediction.entity';
 import { AuditableEntity } from 'src/module/shared/entities/auditable.entity';
-import { Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'predictions_evidences' })
 @ObjectType()
-export class PredictionEvidence extends AuditableEntity {
+export class PredictionEvidence {
   @Field(() => Int)
   @PrimaryGeneratedColumn()
   id: number;
@@ -26,4 +32,7 @@ export class PredictionEvidence extends AuditableEntity {
   })
   @JoinColumn()
   evidence: Evidence;
+
+  @Column(() => AuditableEntity, { prefix: false })
+  audit: AuditableEntity;
 }

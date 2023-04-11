@@ -12,7 +12,7 @@ import { Organization } from 'src/module/organizations/entities/organization.ent
 
 @Entity({ name: 'celebrities_organizations' })
 @ObjectType()
-export class CelebrityOrganization extends AuditableEntity {
+export class CelebrityOrganization {
   @Field()
   @PrimaryGeneratedColumn()
   id: number;
@@ -28,6 +28,9 @@ export class CelebrityOrganization extends AuditableEntity {
   @Field({ nullable: true })
   @Column({ nullable: true })
   leaveDate?: Date;
+
+  @Column(() => AuditableEntity, { prefix: false })
+  audit: AuditableEntity;
 
   @ManyToOne(() => Celebrity, (celebrity) => celebrity.celebrityOrganizations, {
     onDelete: 'CASCADE',

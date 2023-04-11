@@ -12,7 +12,7 @@ import {
 
 @Entity({ name: 'predictions' })
 @ObjectType()
-export class Prediction extends AuditableEntity {
+export class Prediction {
   @Field(() => Int)
   @PrimaryGeneratedColumn()
   id: number;
@@ -45,6 +45,11 @@ export class Prediction extends AuditableEntity {
   @Field({ nullable: true })
   @Column({ nullable: true })
   confidenceLevel?: number;
+
+  @Column(() => AuditableEntity, { prefix: false })
+  audit: AuditableEntity;
+
+  // Relations
 
   // Prediction 0,1 - 0,n Celebrity
   @ManyToOne(() => Celebrity, (celebrity) => celebrity.predictions)

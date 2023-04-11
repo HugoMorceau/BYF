@@ -13,7 +13,7 @@ import { Prediction } from 'src/module/predictions/entities/prediction.entity';
 
 @Entity({ name: 'celebrities' })
 @ObjectType()
-export class Celebrity extends AuditableEntity {
+export class Celebrity {
   @Field(() => Int) // GraphQL
   @PrimaryGeneratedColumn() // TypeORM
   id: number;
@@ -38,6 +38,9 @@ export class Celebrity extends AuditableEntity {
   @Field(() => Int, { nullable: true })
   @Column({ nullable: true })
   userId?: number;
+
+  @Column(() => AuditableEntity, { prefix: false })
+  audit: AuditableEntity;
 
   // Celebrity 0,1 - 0,n Users
   // If the user is deleted, the celebrity.user will be set to null
