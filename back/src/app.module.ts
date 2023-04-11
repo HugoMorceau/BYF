@@ -13,6 +13,7 @@ import { OrganizationsModule } from './module/organizations/organizations.module
 import { PredictionsModule } from './module/predictions/predictions.module';
 import { CelebritiesOrganizationsModule } from './module/celebrities-organizations/celebrities-organizations.module';
 import { EvidencesModule } from './module/evidences/evidences.module';
+import { PredictionsEvidencesModule } from './module/predictions-evidences/predictions-evidences.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { EvidencesModule } from './module/evidences/evidences.module';
     PredictionsModule,
     CelebritiesOrganizationsModule,
     EvidencesModule,
+    PredictionsEvidencesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
