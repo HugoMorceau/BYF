@@ -40,9 +40,8 @@ export class Celebrity extends AuditableEntity {
   userId?: number;
 
   // Associated User if any
-  @ManyToOne(() => User, (user) => user.celebrity, { onDelete: 'SET NULL' })
   // If the user is deleted, the celebrity.user will be set to null
-  @JoinColumn({ name: 'fk_celebrity_user_userId' })
+  @ManyToOne(() => User, (user) => user.celebrity, { onDelete: 'SET NULL' })
   @Field(() => User, { nullable: true })
   user?: User;
 
