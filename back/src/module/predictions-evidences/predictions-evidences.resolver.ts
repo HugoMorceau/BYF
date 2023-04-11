@@ -1,16 +1,16 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { PredictionsEvidencesService } from './predictions-evidences.service';
-import { PredictionsEvidence } from './entities/prediction-evidence.entity';
+import { PredictionEvidence } from './entities/prediction-evidence.entity';
 import { CreatePredictionsEvidenceInput } from './dto/create-prediction-evidence.input';
 import { UpdatePredictionsEvidenceInput } from './dto/update-prediction-evidence.input';
 
-@Resolver(() => PredictionsEvidence)
+@Resolver(() => PredictionEvidence)
 export class PredictionsEvidencesResolver {
   constructor(
     private readonly predictionsEvidencesService: PredictionsEvidencesService,
   ) {}
 
-  @Mutation(() => PredictionsEvidence)
+  @Mutation(() => PredictionEvidence)
   createPredictionsEvidence(
     @Args('createPredictionsEvidenceInput')
     createPredictionsEvidenceInput: CreatePredictionsEvidenceInput,
@@ -20,17 +20,17 @@ export class PredictionsEvidencesResolver {
     );
   }
 
-  @Query(() => [PredictionsEvidence], { name: 'predictionsEvidences' })
+  @Query(() => [PredictionEvidence], { name: 'predictionsEvidences' })
   findAll() {
     return this.predictionsEvidencesService.findAll();
   }
 
-  @Query(() => PredictionsEvidence, { name: 'predictionsEvidence' })
+  @Query(() => PredictionEvidence, { name: 'predictionsEvidence' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.predictionsEvidencesService.findOne(id);
   }
 
-  @Mutation(() => PredictionsEvidence)
+  @Mutation(() => PredictionEvidence)
   updatePredictionsEvidence(
     @Args('updatePredictionsEvidenceInput')
     updatePredictionsEvidenceInput: UpdatePredictionsEvidenceInput,
@@ -41,7 +41,7 @@ export class PredictionsEvidencesResolver {
     );
   }
 
-  @Mutation(() => PredictionsEvidence)
+  @Mutation(() => PredictionEvidence)
   removePredictionsEvidence(@Args('id', { type: () => Int }) id: number) {
     return this.predictionsEvidencesService.remove(id);
   }

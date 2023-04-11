@@ -24,25 +24,13 @@ type CelebrityOrganization {
   leaveDate: DateTime
 }
 
-type Celebrity {
+type Evidence {
   id: Int!
-  firstName: String!
-  lastName: String!
-  birthDate: DateTime!
-  description: String
-  userId: Int
-  user: User
-  celebrityOrganizations: [CelebrityOrganization!]
+  predictionEvidences: [PredictionEvidence!]
 }
 
-type User {
+type PredictionEvidence {
   id: Int!
-  firstName: String!
-  lastName: String!
-  email: String!
-  birthDate: DateTime!
-  description: String
-  celebrity: [Celebrity!]
 }
 
 type Prediction {
@@ -59,11 +47,30 @@ type Prediction {
   """The date at which the prediction was made"""
   predictionDate: DateTime!
   confidenceLevel: Float
+  celebrity: Celebrity!
+  predictionEvidences: [PredictionEvidence!]
 }
 
-type Evidence {
-  """Example field (placeholder)"""
-  exampleField: Int!
+type Celebrity {
+  id: Int!
+  firstName: String!
+  lastName: String!
+  birthDate: DateTime!
+  description: String
+  userId: Int
+  user: User
+  celebrityOrganizations: [CelebrityOrganization!]
+  predictions: [Prediction!]
+}
+
+type User {
+  id: Int!
+  firstName: String!
+  lastName: String!
+  email: String!
+  birthDate: DateTime!
+  description: String
+  celebrity: [Celebrity!]
 }
 
 type Query {
@@ -79,6 +86,8 @@ type Query {
   celebritiesOrganization(id: Int!): CelebrityOrganization!
   evidences: [Evidence!]!
   evidence(id: Int!): Evidence!
+  predictionsEvidences: [PredictionEvidence!]!
+  predictionsEvidence(id: Int!): PredictionEvidence!
 }
 
 type Mutation {
@@ -98,6 +107,9 @@ type Mutation {
   createEvidence(createEvidenceInput: CreateEvidenceInput!): Evidence!
   updateEvidence(updateEvidenceInput: UpdateEvidenceInput!): Evidence!
   removeEvidence(id: Int!): Evidence!
+  createPredictionsEvidence(createPredictionsEvidenceInput: CreatePredictionsEvidenceInput!): PredictionEvidence!
+  updatePredictionsEvidence(updatePredictionsEvidenceInput: UpdatePredictionsEvidenceInput!): PredictionEvidence!
+  removePredictionsEvidence(id: Int!): PredictionEvidence!
 }
 
 input CreateUserInput {
@@ -164,6 +176,17 @@ input CreateEvidenceInput {
 }
 
 input UpdateEvidenceInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreatePredictionsEvidenceInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdatePredictionsEvidenceInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!

@@ -9,7 +9,9 @@ export class EvidencesResolver {
   constructor(private readonly evidencesService: EvidencesService) {}
 
   @Mutation(() => Evidence)
-  createEvidence(@Args('createEvidenceInput') createEvidenceInput: CreateEvidenceInput) {
+  createEvidence(
+    @Args('createEvidenceInput') createEvidenceInput: CreateEvidenceInput,
+  ) {
     return this.evidencesService.create(createEvidenceInput);
   }
 
@@ -24,8 +26,13 @@ export class EvidencesResolver {
   }
 
   @Mutation(() => Evidence)
-  updateEvidence(@Args('updateEvidenceInput') updateEvidenceInput: UpdateEvidenceInput) {
-    return this.evidencesService.update(updateEvidenceInput.id, updateEvidenceInput);
+  updateEvidence(
+    @Args('updateEvidenceInput') updateEvidenceInput: UpdateEvidenceInput,
+  ) {
+    return this.evidencesService.update(
+      updateEvidenceInput.id,
+      updateEvidenceInput,
+    );
   }
 
   @Mutation(() => Evidence)
