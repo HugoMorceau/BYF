@@ -5,7 +5,7 @@ import { AuditableEntity } from 'src/module/shared/entities/auditable.entity';
 
 @Entity({ name: 'organizations' })
 @ObjectType()
-export class Organization extends AuditableEntity {
+export class Organization {
   @Field(() => Int) // GraphQL
   @PrimaryGeneratedColumn() // TypeORM
   id: number;
@@ -30,6 +30,9 @@ export class Organization extends AuditableEntity {
   @Field(() => Int, { nullable: true })
   @Column({ nullable: true })
   userId?: number;
+
+  @Column(() => AuditableEntity, { prefix: false })
+  audit: AuditableEntity;
 
   @OneToMany(
     () => CelebrityOrganization,
