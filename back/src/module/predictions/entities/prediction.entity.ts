@@ -1,7 +1,14 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Celebrity } from 'src/module/celebrities/entities/celebrity.entity';
+import { PredictionEvidence } from 'src/module/predictions-evidences/entities/prediction-evidence.entity';
 import { AuditableEntity } from 'src/module/shared/entities/auditable.entity';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 
 @Entity({ name: 'predictions' })
 @ObjectType()
@@ -46,6 +53,12 @@ export class Prediction extends AuditableEntity {
 
   // Prediction 0,n - 0,n Evidence
   // Prediction 0,n - 1,1 PredictionEvidence
+  @OneToMany(
+    () => PredictionEvidence,
+    (predictionEvidence) => predictionEvidence.prediction,
+  )
+  @Field(() => [PredictionEvidence], { nullable: true })
+  predictionEvidences: PredictionEvidence[];
 
   // TODO: Tags relation
 }

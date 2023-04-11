@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePredictionsEvidenceInput } from './dto/create-predictions-evidence.input';
-import { UpdatePredictionsEvidenceInput } from './dto/update-predictions-evidence.input';
+import { CreatePredictionsEvidenceInput } from './dto/create-prediction-evidence.input';
+import { UpdatePredictionsEvidenceInput } from './dto/update-prediction-evidence.input';
 
 @Injectable()
 export class PredictionsEvidencesService {
@@ -16,7 +16,10 @@ export class PredictionsEvidencesService {
     return `This action returns a #${id} predictionsEvidence`;
   }
 
-  update(id: number, updatePredictionsEvidenceInput: UpdatePredictionsEvidenceInput) {
+  update(
+    id: number,
+    updatePredictionsEvidenceInput: UpdatePredictionsEvidenceInput,
+  ) {
     return `This action updates a #${id} predictionsEvidence`;
   }
 

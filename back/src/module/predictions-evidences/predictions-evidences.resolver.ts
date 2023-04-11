@@ -1,16 +1,23 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { PredictionsEvidencesService } from './predictions-evidences.service';
-import { PredictionsEvidence } from './entities/predictions-evidence.entity';
-import { CreatePredictionsEvidenceInput } from './dto/create-predictions-evidence.input';
-import { UpdatePredictionsEvidenceInput } from './dto/update-predictions-evidence.input';
+import { PredictionsEvidence } from './entities/prediction-evidence.entity';
+import { CreatePredictionsEvidenceInput } from './dto/create-prediction-evidence.input';
+import { UpdatePredictionsEvidenceInput } from './dto/update-prediction-evidence.input';
 
 @Resolver(() => PredictionsEvidence)
 export class PredictionsEvidencesResolver {
-  constructor(private readonly predictionsEvidencesService: PredictionsEvidencesService) {}
+  constructor(
+    private readonly predictionsEvidencesService: PredictionsEvidencesService,
+  ) {}
 
   @Mutation(() => PredictionsEvidence)
-  createPredictionsEvidence(@Args('createPredictionsEvidenceInput') createPredictionsEvidenceInput: CreatePredictionsEvidenceInput) {
-    return this.predictionsEvidencesService.create(createPredictionsEvidenceInput);
+  createPredictionsEvidence(
+    @Args('createPredictionsEvidenceInput')
+    createPredictionsEvidenceInput: CreatePredictionsEvidenceInput,
+  ) {
+    return this.predictionsEvidencesService.create(
+      createPredictionsEvidenceInput,
+    );
   }
 
   @Query(() => [PredictionsEvidence], { name: 'predictionsEvidences' })
@@ -24,8 +31,14 @@ export class PredictionsEvidencesResolver {
   }
 
   @Mutation(() => PredictionsEvidence)
-  updatePredictionsEvidence(@Args('updatePredictionsEvidenceInput') updatePredictionsEvidenceInput: UpdatePredictionsEvidenceInput) {
-    return this.predictionsEvidencesService.update(updatePredictionsEvidenceInput.id, updatePredictionsEvidenceInput);
+  updatePredictionsEvidence(
+    @Args('updatePredictionsEvidenceInput')
+    updatePredictionsEvidenceInput: UpdatePredictionsEvidenceInput,
+  ) {
+    return this.predictionsEvidencesService.update(
+      updatePredictionsEvidenceInput.id,
+      updatePredictionsEvidenceInput,
+    );
   }
 
   @Mutation(() => PredictionsEvidence)
