@@ -22,6 +22,7 @@ services:
       POSTGRES_USER: byf
       POSTGRES_PASSWORD: byf
       POSTGRES_DB: byf
+      TZ: Europe/Paris
     volumes:
       - 'db-data:/var/lib/postgresql/data'
 

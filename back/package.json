@@ -23,7 +23,10 @@
     "migration:run": "npm run typeorm -- migration:run",
     "migration:revert": "npm run typeorm -- migration:revert",
     "reset-db": "psql -U postgres -f ./src/config/database/reset_db.sql",
-    "disco-db": "psql -U postgres -f ./src/config/database/disco_db.sql"
+    "disco-db": "psql -U postgres -f ./src/config/database/disco_db.sql",
+    "docker:build": "docker-compose -f src/config/docker/docker-compose.yml build",
+    "docker:up": "docker-compose -f src/config/docker/docker-compose.yml up",
+    "docker:down": "docker-compose -f src/config/docker/docker-compose.yml down"
   },
   "dependencies": {
     "@apollo/server": "^4.6.0",

@@ -1,6 +1,10 @@
 # Utilisez une image Node.js officielle comme base
 FROM node:16.16
 
+# Set timezone
+ENV TZ=Europe/Paris
+RUN apt-get update && apt-get install -y tzdata
+
 # Créez un répertoire pour votre application
 WORKDIR /back
 
