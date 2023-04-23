@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  app:
+    build: 
+      context: ../../.. 
+      dockerfile: src/config/docker/Dockerfile
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    environment:
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_USER: byf
+      DATABASE_PASSWORD: byf
+      DATABASE_NAME: byf
+
+  db:
+    image: 'postgres:13'
+    environment:
+      POSTGRES_USER: byf
+      POSTGRES_PASSWORD: byf
+      POSTGRES_DB: byf
+    volumes:
+      - 'db-data:/var/lib/postgresql/data'
+
+volumes:
+  db-data:
