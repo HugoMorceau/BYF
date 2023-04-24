@@ -1,22 +1,22 @@
 version: '3.8'
 
 services:
-  app:
+  byf-app:
     build: 
       context: ../../.. 
       dockerfile: src/config/docker/Dockerfile
     ports:
       - '3000:3000'
     depends_on:
-      - db
+      - byf-db
     environment:
-      DATABASE_HOST: db
+      DATABASE_HOST: byf-db
       DATABASE_PORT: 5432
       DATABASE_USER: byf
       DATABASE_PASSWORD: byf
       DATABASE_NAME: byf
 
-  db:
+  byf-db:
     image: 'postgres:13'
     environment:
       POSTGRES_USER: byf
@@ -24,7 +24,7 @@ services:
       POSTGRES_DB: byf
       TZ: Europe/Paris
     volumes:
-      - 'db-data:/var/lib/postgresql/data'
+      - 'byf-db-data:/var/lib/postgresql/data'
 
 volumes:
-  db-data:
+  byf-db-data:
