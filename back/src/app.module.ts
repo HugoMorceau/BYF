@@ -14,9 +14,14 @@ import { PredictionsModule } from './module/predictions/predictions.module';
 import { CelebritiesOrganizationsModule } from './module/celebrities-organizations/celebrities-organizations.module';
 import { EvidencesModule } from './module/evidences/evidences.module';
 import { PredictionsEvidencesModule } from './module/predictions-evidences/predictions-evidences.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: './src/config/.env',
+    }),
     TypeOrmModule.forRoot(dataSourceOptions),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,

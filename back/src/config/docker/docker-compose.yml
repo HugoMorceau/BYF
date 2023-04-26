@@ -6,23 +6,16 @@ services:
       context: ../../.. 
       dockerfile: src/config/docker/Dockerfile
     ports:
-      - '${PORT}:3100'
+      - '${APP_PORT}:3000'
     depends_on:
       - byf-db
-    environment:
-      DATABASE_HOST: byf-db
-      DATABASE_PORT: 5432
-      DATABASE_USER: ${USER}
-      DATABASE_PASSWORD: byf
-      DATABASE_NAME: byf
-      NODE_ENV: 'development'
 
-  byf-db:
+  byf-db: # If this name is changed, DATABASE_HOST in .env file must be changed too
     image: 'postgres:13'
     environment:
-      POSTGRES_USER: byf
-      POSTGRES_PASSWORD: byf
-      POSTGRES_DB: byf
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
       TZ: Europe/Paris
     volumes:
       - 'byf-db-data:/var/lib/postgresql/data'
