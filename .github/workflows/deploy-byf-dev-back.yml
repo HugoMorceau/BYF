@@ -19,6 +19,6 @@ jobs:
       env:
         DOCKER_COMPOSE_FILE: back/src/config/docker/docker-compose.yml
       run: |
-        docker-compose --env-file ./src/config/.env -f $DOCKER_COMPOSE_FILE down
-        docker-compose --env-file ./src/config/.env -f $DOCKER_COMPOSE_FILE build
-        docker-compose --env-file ./src/config/.env -f $DOCKER_COMPOSE_FILE up -d 
+        docker-compose --env-file back/src/config/.env -f $DOCKER_COMPOSE_FILE down
+        docker-compose --env-file back/src/config/.env -f $DOCKER_COMPOSE_FILE build
+        docker-compose --env-file back/src/config/.env -f $DOCKER_COMPOSE_FILE up -d 
