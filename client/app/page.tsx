@@ -1,5 +1,6 @@
 // activate nextjs client rendering
 "use client";
+
 export default function Home() {
   const fetchData = async () => {
     // URL de l'endpoint GraphQL

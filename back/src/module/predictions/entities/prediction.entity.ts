@@ -1,13 +1,13 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Celebrity } from 'src/module/celebrities/entities/celebrity.entity';
 import { PredictionEvidence } from 'src/module/predictions-evidences/entities/prediction-evidence.entity';
 import { AuditableEntity } from 'src/module/shared/entities/auditable.entity';
 import {
-  Entity,
-  PrimaryGeneratedColumn,
   Column,
+  Entity,
   ManyToOne,
   OneToMany,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 
 @Entity({ name: 'predictions' })
@@ -21,7 +21,9 @@ export class Prediction {
   @Column()
   title: string;
 
-  @Field()
+  @Field({
+    description: 'Prediction description',
+  })
   @Column()
   description: string;
 

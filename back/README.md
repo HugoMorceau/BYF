@@ -14,4 +14,13 @@
 - Entity names are singular
 - Entity names should be single words, if possible
 
+# Database
+
+## Database creation
+- See ormconfig.json from TypeORM for database creation with synchronise set to true (this will create the database if it doesn't exist) (this is absolutely prohibited in production)
+
+# Modules
+- Nest g resource modules/moduleName will create a module with a controller, service, entity, and module file
+
+
  

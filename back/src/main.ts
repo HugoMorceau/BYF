@@ -6,7 +6,7 @@ console.log('host : ' + process.env.DATABASE_HOST);
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use(cors()); // Add this line to enable CORS
+  app.use(cors());
   await app.listen(3100);
   console.log(`Application is running on: ${await app.getUrl()}`);
   console.log('Environment: ' + process.env.NODE_ENV);

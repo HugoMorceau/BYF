@@ -2,27 +2,20 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Organization {
+type User {
   id: Int!
   firstName: String!
   lastName: String!
+  email: String!
   birthDate: DateTime!
   description: String
-  userId: Int
-  celebrityOrganizations: [CelebrityOrganization!]
+  celebrity: [Celebrity!]
 }
 
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
-
-type CelebrityOrganization {
-  id: Float!
-  role: String!
-  joinDate: DateTime
-  leaveDate: DateTime
-}
 
 type Evidence {
   id: Int!
@@ -63,14 +56,26 @@ type Celebrity {
   predictions: [Prediction!]
 }
 
-type User {
+type Organization {
   id: Int!
   firstName: String!
   lastName: String!
-  email: String!
   birthDate: DateTime!
   description: String
-  celebrity: [Celebrity!]
+  userId: Int
+  celebrityOrganizations: [CelebrityOrganization!]
+}
+
+type CelebrityOrganization {
+  id: Float!
+  role: String!
+  joinDate: DateTime
+  leaveDate: DateTime
+}
+
+type FulfilmentCondition {
+  """Example field (placeholder)"""
+  exampleField: Int!
 }
 
 type Query {
@@ -88,6 +93,8 @@ type Query {
   evidence(id: Int!): Evidence!
   predictionsEvidences: [PredictionEvidence!]!
   predictionsEvidence(id: Int!): PredictionEvidence!
+  fulfilmentConditions: [FulfilmentCondition!]!
+  fulfilmentCondition(id: Int!): FulfilmentCondition!
 }
 
 type Mutation {
@@ -110,6 +117,9 @@ type Mutation {
   createPredictionsEvidence(createPredictionsEvidenceInput: CreatePredictionsEvidenceInput!): PredictionEvidence!
   updatePredictionsEvidence(updatePredictionsEvidenceInput: UpdatePredictionsEvidenceInput!): PredictionEvidence!
   removePredictionsEvidence(id: Int!): PredictionEvidence!
+  createFulfilmentCondition(createFulfilmentConditionInput: CreateFulfilmentConditionInput!): FulfilmentCondition!
+  updateFulfilmentCondition(updateFulfilmentConditionInput: UpdateFulfilmentConditionInput!): FulfilmentCondition!
+  removeFulfilmentCondition(id: Int!): FulfilmentCondition!
 }
 
 input CreateUserInput {
@@ -187,6 +197,17 @@ input CreatePredictionsEvidenceInput {
 }
 
 input UpdatePredictionsEvidenceInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateFulfilmentConditionInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateFulfilmentConditionInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!
