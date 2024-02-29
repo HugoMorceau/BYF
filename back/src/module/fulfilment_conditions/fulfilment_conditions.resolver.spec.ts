@@ -10,7 +10,9 @@ describe('FulfilmentConditionsResolver', () => {
       providers: [FulfilmentConditionsResolver, FulfilmentConditionsService],
     }).compile();
 
-    resolver = module.get<FulfilmentConditionsResolver>(FulfilmentConditionsResolver);
+    resolver = module.get<FulfilmentConditionsResolver>(
+      FulfilmentConditionsResolver,
+    );
   });
 
   it('should be defined', () => {

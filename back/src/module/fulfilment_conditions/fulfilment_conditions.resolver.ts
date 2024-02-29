@@ -1,16 +1,23 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
-import { FulfilmentConditionsService } from './fulfilment_conditions.service';
-import { FulfilmentCondition } from './entities/fulfilment_condition.entity';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CreateFulfilmentConditionInput } from './dto/create-fulfilment_condition.input';
 import { UpdateFulfilmentConditionInput } from './dto/update-fulfilment_condition.input';
+import { FulfilmentCondition } from './entities/fulfilment_condition.entity';
+import { FulfilmentConditionsService } from './fulfilment_conditions.service';
 
 @Resolver(() => FulfilmentCondition)
 export class FulfilmentConditionsResolver {
-  constructor(private readonly fulfilmentConditionsService: FulfilmentConditionsService) {}
+  constructor(
+    private readonly fulfilmentConditionsService: FulfilmentConditionsService,
+  ) {}
 
   @Mutation(() => FulfilmentCondition)
-  createFulfilmentCondition(@Args('createFulfilmentConditionInput') createFulfilmentConditionInput: CreateFulfilmentConditionInput) {
-    return this.fulfilmentConditionsService.create(createFulfilmentConditionInput);
+  createFulfilmentCondition(
+    @Args('createFulfilmentConditionInput')
+    createFulfilmentConditionInput: CreateFulfilmentConditionInput,
+  ) {
+    return this.fulfilmentConditionsService.create(
+      createFulfilmentConditionInput,
+    );
   }
 
   @Query(() => [FulfilmentCondition], { name: 'fulfilmentConditions' })
@@ -24,8 +31,14 @@ export class FulfilmentConditionsResolver {
   }
 
   @Mutation(() => FulfilmentCondition)
-  updateFulfilmentCondition(@Args('updateFulfilmentConditionInput') updateFulfilmentConditionInput: UpdateFulfilmentConditionInput) {
-    return this.fulfilmentConditionsService.update(updateFulfilmentConditionInput.id, updateFulfilmentConditionInput);
+  updateFulfilmentCondition(
+    @Args('updateFulfilmentConditionInput')
+    updateFulfilmentConditionInput: UpdateFulfilmentConditionInput,
+  ) {
+    return this.fulfilmentConditionsService.update(
+      updateFulfilmentConditionInput.id,
+      updateFulfilmentConditionInput,
+    );
   }
 
   @Mutation(() => FulfilmentCondition)

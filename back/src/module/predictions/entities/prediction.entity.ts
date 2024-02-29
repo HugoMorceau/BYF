@@ -58,7 +58,7 @@ export class Prediction {
   @Field(() => Celebrity)
   celebrity: Celebrity;
 
-  // Prediction 0,n - 0,n Evidence
+  // Prediction 0,n - 0,n Evidence => Relationship established in PredictionEvidence entity
   // Prediction 0,n - 1,1 PredictionEvidence
   @OneToMany(
     () => PredictionEvidence,

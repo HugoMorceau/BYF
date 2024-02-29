@@ -16,7 +16,10 @@ export class FulfilmentConditionsService {
     return `This action returns a #${id} fulfilmentCondition`;
   }
 
-  update(id: number, updateFulfilmentConditionInput: UpdateFulfilmentConditionInput) {
+  update(
+    id: number,
+    updateFulfilmentConditionInput: UpdateFulfilmentConditionInput,
+  ) {
     return `This action updates a #${id} fulfilmentCondition`;
   }
 
