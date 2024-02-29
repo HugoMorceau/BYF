@@ -29,6 +29,8 @@ type PredictionEvidence {
 type Prediction {
   id: Int!
   title: String!
+
+  """Prediction description"""
   description: String!
 
   """The date at which the prediction is supposed to happen"""
@@ -74,8 +76,13 @@ type CelebrityOrganization {
 }
 
 type FulfilmentCondition {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  id: Int!
+
+  """Prediction title"""
+  title: String!
+
+  """Prediction description"""
+  description: String!
 }
 
 type Query {
