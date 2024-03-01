@@ -1,16 +1,11 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { PredictedIndicator } from 'src/module/predicted-indicators/entities/predicted-indicator.entity';
 import { AuditableEntity } from 'src/module/shared/entities/auditable.entity';
-import {
-  Column,
-  Entity,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'events' })
+@Entity({ name: 'indicators' })
 @ObjectType()
-export class Event {
+export class Indicator {
   @Field(() => Int)
   @PrimaryGeneratedColumn()
   id: number;
@@ -42,4 +37,11 @@ export class Event {
 
   @Column(() => AuditableEntity, { prefix: false })
   audit: AuditableEntity;
+
+  @OneToMany(
+    () => PredictedIndicator,
+    (predictedIndicator) => predictedIndicator.indicator,
+  )
+  @Field(() => [PredictedIndicator], { nullable: true })
+  predictedIndicators: PredictedIndicator[];
 }

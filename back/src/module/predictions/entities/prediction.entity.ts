@@ -11,6 +11,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { PredictedIndicator } from 'src/module/predicted-indicators/entities/predicted-indicator.entity';
 
 @Entity({ name: 'predictions' })
 @ObjectType()
@@ -75,4 +76,12 @@ export class Prediction {
   )
   @Field(() => [PredictedEvent], { nullable: true })
   predictedEvents: PredictedEvent[];
+
+  // Prediction 0,n - 0,n PredictedIndicator
+  @OneToMany(
+    () => PredictedIndicator,
+    (predictedIndicator) => predictedIndicator.prediction,
+  )
+  @Field(() => [PredictedIndicator], { nullable: true })
+  predictedIndicators: PredictedIndicator[];
 }

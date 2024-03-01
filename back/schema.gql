@@ -26,6 +26,62 @@ type PredictionEvidence {
   id: Int!
 }
 
+type Event {
+  id: Int!
+  title: String!
+
+  """Event description"""
+  description: String!
+
+  """Event expected date"""
+  eventExpectedDate: DateTime!
+
+  """Event date"""
+  eventDate: DateTime!
+
+  """Event location"""
+  location: String!
+
+  """Event link"""
+  link: String!
+
+  """Event image"""
+  image: String!
+
+  """Event status"""
+  status: Float!
+  predictedEvents: [PredictedEvent!]
+}
+
+type PredictedEvent {
+  id: Int!
+}
+
+type Indicator {
+  id: Int!
+  title: String!
+
+  """Indicator description"""
+  description: String!
+
+  """Indicator value"""
+  value: Float!
+
+  """Indicator value units"""
+  units: String!
+
+  """Indicator link"""
+  link: String!
+
+  """Indicator image"""
+  image: String!
+  predictedIndicators: [PredictedIndicator!]
+}
+
+type PredictedIndicator {
+  id: Int!
+}
+
 type Prediction {
   id: Int!
   title: String!
@@ -44,6 +100,8 @@ type Prediction {
   confidenceLevel: Float
   celebrity: Celebrity!
   predictionEvidences: [PredictionEvidence!]
+  predictedEvents: [PredictedEvent!]
+  predictedIndicators: [PredictedIndicator!]
 }
 
 type Celebrity {
@@ -75,16 +133,6 @@ type CelebrityOrganization {
   leaveDate: DateTime
 }
 
-type FulfilmentCondition {
-  id: Int!
-
-  """Prediction title"""
-  title: String!
-
-  """Prediction description"""
-  description: String!
-}
-
 type Query {
   users: [User!]!
   getUser(id: Int!): User!
@@ -100,8 +148,14 @@ type Query {
   evidence(id: Int!): Evidence!
   predictionsEvidences: [PredictionEvidence!]!
   predictionsEvidence(id: Int!): PredictionEvidence!
-  fulfilmentConditions: [FulfilmentCondition!]!
-  fulfilmentCondition(id: Int!): FulfilmentCondition!
+  events: [Event!]!
+  event(id: Int!): Event!
+  indicators: [Indicator!]!
+  indicator(id: Int!): Indicator!
+  predictedEvents: [PredictedEvent!]!
+  predictedEvent(id: Int!): PredictedEvent!
+  predictedIndicators: [PredictedIndicator!]!
+  predictedIndicator(id: Int!): PredictedIndicator!
 }
 
 type Mutation {
@@ -124,9 +178,18 @@ type Mutation {
   createPredictionsEvidence(createPredictionsEvidenceInput: CreatePredictionsEvidenceInput!): PredictionEvidence!
   updatePredictionsEvidence(updatePredictionsEvidenceInput: UpdatePredictionsEvidenceInput!): PredictionEvidence!
   removePredictionsEvidence(id: Int!): PredictionEvidence!
-  createFulfilmentCondition(createFulfilmentConditionInput: CreateFulfilmentConditionInput!): FulfilmentCondition!
-  updateFulfilmentCondition(updateFulfilmentConditionInput: UpdateFulfilmentConditionInput!): FulfilmentCondition!
-  removeFulfilmentCondition(id: Int!): FulfilmentCondition!
+  createEvent(createEventInput: CreateEventInput!): Event!
+  updateEvent(updateEventInput: UpdateEventInput!): Event!
+  removeEvent(id: Int!): Event!
+  createIndicator(createIndicatorInput: CreateIndicatorInput!): Indicator!
+  updateIndicator(updateIndicatorInput: UpdateIndicatorInput!): Indicator!
+  removeIndicator(id: Int!): Indicator!
+  createPredictedEvent(createPredictedEventInput: CreatePredictedEventInput!): PredictedEvent!
+  updatePredictedEvent(updatePredictedEventInput: UpdatePredictedEventInput!): PredictedEvent!
+  removePredictedEvent(id: Int!): PredictedEvent!
+  createPredictedIndicator(createPredictedIndicatorInput: CreatePredictedIndicatorInput!): PredictedIndicator!
+  updatePredictedIndicator(updatePredictedIndicatorInput: UpdatePredictedIndicatorInput!): PredictedIndicator!
+  removePredictedIndicator(id: Int!): PredictedIndicator!
 }
 
 input CreateUserInput {
@@ -209,12 +272,45 @@ input UpdatePredictionsEvidenceInput {
   id: Int!
 }
 
-input CreateFulfilmentConditionInput {
+input CreateEventInput {
   """Example field (placeholder)"""
   exampleField: Int!
 }
 
-input UpdateFulfilmentConditionInput {
+input UpdateEventInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateIndicatorInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateIndicatorInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreatePredictedEventInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdatePredictedEventInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreatePredictedIndicatorInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdatePredictedIndicatorInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!
