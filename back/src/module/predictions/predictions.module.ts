@@ -3,6 +3,6 @@ import { PredictionsService } from './predictions.service';
 import { PredictionsResolver } from './predictions.resolver';
 
 @Module({
-  providers: [PredictionsResolver, PredictionsService]
+  providers: [PredictionsResolver, PredictionsService],
 })
 export class PredictionsModule {}

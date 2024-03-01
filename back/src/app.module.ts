@@ -16,6 +16,11 @@ import { OrganizationsModule } from './module/organizations/organizations.module
 import { PredictionsEvidencesModule } from './module/predictions-evidences/predictions-evidences.module';
 import { PredictionsModule } from './module/predictions/predictions.module';
 import { UsersModule } from './module/users/users.module';
+import { FulfilmentConditionsEvidencesModule } from './module/fulfilment_conditions-evidences/fulfilment_conditions-evidences.module';
+import { FulfilmentConditionsPredictionsModule } from './module/fulfilment_conditions-predictions/fulfilment_conditions-predictions.module';
+import { EventsModule } from './module/events/events.module';
+import { IndicatorsModule } from './module/indicators/indicators.module';
+import { PredictedEventsModule } from './module/predicted-events/predicted-events.module';
 
 @Module({
   imports: [
@@ -36,6 +41,11 @@ import { UsersModule } from './module/users/users.module';
     EvidencesModule,
     PredictionsEvidencesModule,
     FulfilmentConditionsModule,
+    FulfilmentConditionsEvidencesModule,
+    FulfilmentConditionsPredictionsModule,
+    EventsModule,
+    IndicatorsModule,
+    PredictedEventsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,6 +1,8 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Celebrity } from 'src/module/celebrities/entities/celebrity.entity';
 import { PredictionEvidence } from 'src/module/predictions-evidences/entities/prediction-evidence.entity';
+import { PredictedEvent } from 'src/module/predicted-events/entities/predicted-event.entity';
+
 import { AuditableEntity } from 'src/module/shared/entities/auditable.entity';
 import {
   Column,
@@ -58,7 +60,6 @@ export class Prediction {
   @Field(() => Celebrity)
   celebrity: Celebrity;
 
-  // Prediction 0,n - 0,n Evidence => Relationship established in PredictionEvidence entity
   // Prediction 0,n - 1,1 PredictionEvidence
   @OneToMany(
     () => PredictionEvidence,
@@ -67,5 +68,11 @@ export class Prediction {
   @Field(() => [PredictionEvidence], { nullable: true })
   predictionEvidences: PredictionEvidence[];
 
-  // TODO: Tags relation
+  // Prediction 0,n - 1,1 PredictedEvent
+  @OneToMany(
+    () => PredictedEvent,
+    (predictedEvent) => predictedEvent.prediction,
+  )
+  @Field(() => [PredictedEvent], { nullable: true })
+  predictedEvents: PredictedEvent[];
 }
