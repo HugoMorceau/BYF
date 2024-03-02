@@ -19,23 +19,23 @@ export class Event {
   description: string;
 
   @Field({ description: 'Event expected date' })
-  @Column()
-  eventExpectedDate: Date;
+  @Column({ nullable: true })
+  expectedDate: Date;
 
   @Field({ description: 'Event date' })
-  @Column()
-  eventDate: Date;
+  @Column({ nullable: true })
+  date: Date;
 
   @Field({ description: 'Event location' })
-  @Column()
+  @Column({ nullable: true })
   location: string;
 
   @Field({ description: 'Event link' })
-  @Column()
+  @Column({ nullable: true })
   link: string;
 
   @Field({ description: 'Event image' })
-  @Column()
+  @Column({ nullable: true })
   image: string;
 
   // Event status

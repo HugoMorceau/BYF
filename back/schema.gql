@@ -34,10 +34,10 @@ type Event {
   description: String!
 
   """Event expected date"""
-  eventExpectedDate: DateTime!
+  expectedDate: DateTime!
 
   """Event date"""
-  eventDate: DateTime!
+  date: DateTime!
 
   """Event location"""
   location: String!
