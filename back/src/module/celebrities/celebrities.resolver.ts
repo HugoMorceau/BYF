@@ -21,7 +21,7 @@ export class CelebritiesResolver {
   createCelebrity(
     @Args('createCelebrityInput') createCelebrityInput: CreateCelebrityInput,
   ) {
-    const createdBy = 1; // todo get userId from context
+    const createdBy = 'toto'; // todo get userId from context
     return this.celebritiesService.create(createCelebrityInput, createdBy);
   }
 

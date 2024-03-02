@@ -17,7 +17,7 @@ export class CelebritiesService {
 
   create(
     createCelebrityInput: CreateCelebrityInput,
-    createdBy: number,
+    createdBy: string,
   ): Promise<Celebrity> {
     const newCelebrity =
       this.celebritiesRepository.create(createCelebrityInput);
