@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "startc": "cd client && npm run dev",
-    "startb": "cd back && npm start"
+    "startb": "cd back && npm run start:dev"
   },
   "author": "",
   "license": "ISC",

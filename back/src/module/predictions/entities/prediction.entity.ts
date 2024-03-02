@@ -24,9 +24,7 @@ export class Prediction {
   @Column()
   title: string;
 
-  @Field({
-    description: 'Prediction description',
-  })
+  @Field()
   @Column()
   description: string;
 

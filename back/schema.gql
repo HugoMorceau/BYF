@@ -68,7 +68,7 @@ type Indicator {
   value: Float!
 
   """Indicator value units"""
-  units: String!
+  unit: String!
 
   """Indicator link"""
   link: String!
@@ -85,8 +85,6 @@ type PredictedIndicator {
 type Prediction {
   id: Int!
   title: String!
-
-  """Prediction description"""
   description: String!
 
   """The date at which the prediction is supposed to happen"""
@@ -118,9 +116,7 @@ type Celebrity {
 
 type Organization {
   id: Int!
-  firstName: String!
-  lastName: String!
-  birthDate: DateTime!
+  name: String!
   description: String
   userId: Int
   celebrityOrganizations: [CelebrityOrganization!]

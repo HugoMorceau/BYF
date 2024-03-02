@@ -12,16 +12,7 @@ export class Organization {
 
   @Field()
   @Column()
-  firstName: string;
-
-  @Field()
-  @Column()
-  lastName: string;
-
-  // Birthdate
-  @Field()
-  @Column()
-  birthDate: Date;
+  name: string;
 
   @Field({ nullable: true })
   @Column({ nullable: true })

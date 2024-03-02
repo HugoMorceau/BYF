@@ -25,14 +25,14 @@ export class Indicator {
   // Units : €, $, %, ...
   @Field({ description: 'Indicator value units' })
   @Column()
-  units: string;
+  unit: string;
 
   @Field({ description: 'Indicator link' })
-  @Column()
+  @Column({ nullable: true })
   link: string;
 
   @Field({ description: 'Indicator image' })
-  @Column()
+  @Column({ nullable: true })
   image: string;
 
   @Column(() => AuditableEntity, { prefix: false })
