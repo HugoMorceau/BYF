@@ -25,9 +25,10 @@
     "reset-db": "psql -U postgres -f ./src/config/database/reset_db.sql",
     "disco-db": "psql -U postgres -f ./src/config/database/disco_db.sql",
     "seed-db": "psql -U byf -d byf -f ./src/config/database/seeding.sql",
-    "docker:build": "docker-compose --env-file ./src/config/.env -f src/config/docker/docker-compose.yml build",
-    "docker:up": "docker-compose --env-file ./src/config/.env -f src/config/docker/docker-compose.yml up",
-    "docker:down": "docker-compose --env-file ./src/config/.env -f src/config/docker/docker-compose.yml down"
+    "docker:build": "docker-compose --env-file ./src/config/.env  up --build",
+    "docker:up": "docker-compose --env-file ./src/config/.env  up",
+    "docker:down": "docker-compose --env-file ./src/config/.env  down"
+    
   },
   "dependencies": {
     "@apollo/server": "^4.10.0",

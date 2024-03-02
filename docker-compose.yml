@@ -1,12 +1,23 @@
 version: '3.8'
 
 services:
-  byf-app:
+
+  byf-client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+
+
+  byf-back:
     build: 
-      context: ../../.. 
+      context: ./back
       dockerfile: src/config/docker/Dockerfile
     ports:
-      - '${APP_PORT}:3000'
+      - '${BACK_EXTERNAL_PORT}:3000'
+    environment:
+      - DATABASE_HOST=byf-db
     depends_on:
       - byf-db
 
@@ -19,6 +30,7 @@ services:
       TZ: Europe/Paris
     volumes:
       - 'byf-db-data:/var/lib/postgresql/data'
+      - './back/src/config/database:/docker-entrypoint-initdb.d'
 
 volumes:
   byf-db-data:

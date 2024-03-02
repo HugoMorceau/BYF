@@ -4,7 +4,7 @@
 export default function Home() {
   const fetchData = async () => {
     // URL de l'endpoint GraphQL
-    const GRAPHQL_URL = "http://localhost:3000/graphql";
+    const GRAPHQL_URL = "http://localhost:3100/graphql";
 
     // Exemple de requête GraphQL
     const GET_DATA_QUERY = `
