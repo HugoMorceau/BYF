@@ -9,7 +9,9 @@ export class PredictionsResolver {
   constructor(private readonly predictionsService: PredictionsService) {}
 
   @Mutation(() => Prediction)
-  createPrediction(@Args('createPredictionInput') createPredictionInput: CreatePredictionInput) {
+  createPrediction(
+    @Args('createPredictionInput') createPredictionInput: CreatePredictionInput,
+  ) {
     return this.predictionsService.create(createPredictionInput);
   }
 
@@ -24,8 +26,13 @@ export class PredictionsResolver {
   }
 
   @Mutation(() => Prediction)
-  updatePrediction(@Args('updatePredictionInput') updatePredictionInput: UpdatePredictionInput) {
-    return this.predictionsService.update(updatePredictionInput.id, updatePredictionInput);
+  updatePrediction(
+    @Args('updatePredictionInput') updatePredictionInput: UpdatePredictionInput,
+  ) {
+    return this.predictionsService.update(
+      updatePredictionInput.id,
+      updatePredictionInput,
+    );
   }
 
   @Mutation(() => Prediction)

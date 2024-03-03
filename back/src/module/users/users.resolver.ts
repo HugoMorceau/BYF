@@ -11,8 +11,8 @@ export class UsersResolver {
   users(): Promise<User[]> {
     return this.usersService.findAll();
   }
-  @Query(() => User)
-  getUser(@Args('id', { type: () => Int }) id: number): Promise<User> {
+  @Query(() => User, { name: 'user' })
+  findOne(@Args('id', { type: () => Int }) id: number): Promise<User> {
     return this.usersService.findOne(id);
   }
 

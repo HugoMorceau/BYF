@@ -23,12 +23,8 @@ export class User {
   email: string;
 
   @Field()
-  @Column()
-  birthDate: Date;
-
-  @Field({ nullable: true })
   @Column({ nullable: true })
-  description?: string;
+  birthDate: Date;
 
   @Column(() => AuditableEntity, { prefix: false })
   audit: AuditableEntity;

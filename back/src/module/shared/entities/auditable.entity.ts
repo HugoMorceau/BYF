@@ -9,13 +9,13 @@ export abstract class AuditableEntity extends BaseEntity {
   @Column({ nullable: true })
   createdBy?: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ nullable: true })
   createdAt: Date;
 
   @Column({ nullable: true })
   updatedBy?: string;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ nullable: true })
   updatedAt: Date;
 
   @Column({ nullable: true })

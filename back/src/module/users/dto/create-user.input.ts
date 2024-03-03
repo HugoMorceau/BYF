@@ -11,9 +11,6 @@ export class CreateUserInput {
   @Field()
   email: string;
 
-  @Field()
-  birthDate: Date;
-
   @Field({ nullable: true })
-  description?: string;
+  birthDate: Date;
 }

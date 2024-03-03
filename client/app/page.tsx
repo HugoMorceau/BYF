@@ -1,12 +1,10 @@
 // activate nextjs client rendering
 "use client";
+import style from "./page.module.scss";
 
 export default function Home() {
   const fetchData = async () => {
-    // URL de l'endpoint GraphQL
-    const GRAPHQL_URL = "http://localhost:3100/graphql";
-
-    // Exemple de requête GraphQL
+    const GRAPHQL_URL = "http://localhost:3000/graphql";
     const GET_DATA_QUERY = `
       query {
         users {
@@ -17,7 +15,21 @@ export default function Home() {
         }
       }
     `;
-
+    const CREATE_USER_MUTATION = `
+    mutation {
+      createUser(createUserInput: {
+        firstName: "Bernard",
+        lastName: "Doe",
+        email: "john.doe@example.com",
+        
+      }) {
+        id
+        firstName
+        lastName
+        email
+      }
+    }
+  `;
     fetch(GRAPHQL_URL, {
       method: "POST",
       headers: {
@@ -26,6 +38,7 @@ export default function Home() {
       },
       body: JSON.stringify({
         query: GET_DATA_QUERY,
+        // query: CREATE_USER_MUTATION,
       }),
     })
       .then((response) => response.json())
@@ -34,8 +47,11 @@ export default function Home() {
   };
   return (
     <main>
-      <div> hello world </div>
-      <button onClick={() => fetchData()}> click me </button>
+      <div className={style.mainContainer}>
+        <button onClick={() => fetchData()}> Show Predictions </button>
+        <button onClick={() => fetchData()}> Show Users</button>
+        <button onClick={() => fetchData()}> click me </button>
+      </div>
     </main>
   );
 }
