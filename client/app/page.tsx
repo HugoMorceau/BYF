@@ -46,12 +46,29 @@ export default function Home() {
       .catch((error) => console.error("Erreur:", error));
   };
   return (
-    <main>
-      <div className={style.mainContainer}>
-        <button onClick={() => fetchData()}> Show Predictions </button>
-        <button onClick={() => fetchData()}> Show Users</button>
-        <button onClick={() => fetchData()}> click me </button>
-      </div>
-    </main>
+    <>
+      <header>
+        <nav className={style.navMenu}>
+          <ul>
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/predictions">Predictions</a>
+            </li>
+            <li>
+              <a href="/users">Users</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <div className={style.mainContainer}>
+          <button onClick={() => fetchData()}> Show Predictions </button>
+          <button onClick={() => fetchData()}> Show Users</button>
+          <button onClick={() => fetchData()}> click me </button>
+        </div>
+      </main>
+    </>
   );
 }
