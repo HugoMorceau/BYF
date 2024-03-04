@@ -7,11 +7,8 @@ export default function Home() {
     const GRAPHQL_URL = "http://localhost:3000/graphql";
     const GET_DATA_QUERY = `
       query {
-        users {
-          id,
-          firstName,
-          lastName,
-          email
+        predictions {
+          id
         }
       }
     `;
@@ -42,7 +39,7 @@ export default function Home() {
       }),
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      // .then((data) => console.log(data))
       .catch((error) => console.error("Erreur:", error));
   };
   return (

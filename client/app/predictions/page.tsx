@@ -1,9 +1,20 @@
+"use client";
 import styles from "./page.module.scss";
-export default function Users() {
+import queryGraphql from "../graphqlRequests";
+
+const getPredictionsQuery = `query {
+  predictions {
+    id
+    title
+    description
+  }
+}`;
+
+export default function Predictions() {
   return (
     <>
-      <div> a</div>
-      <div className={styles.users}>users component</div>
+      <div className={styles.users}>predictions component</div>
+      <button onClick={() => queryGraphql(getPredictionsQuery)}> Show Predictions </button>
     </>
   );
 }

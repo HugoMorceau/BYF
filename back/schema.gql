@@ -129,7 +129,7 @@ type CelebrityOrganization {
 }
 
 type Query {
-  users: [User!]!
+  findAll: [User!]!
   user(id: Int!): User!
   celebrities: [Celebrity!]!
   celebrity(id: Int!): Celebrity!
@@ -162,8 +162,6 @@ type Mutation {
   updateOrganization(updateOrganizationInput: UpdateOrganizationInput!): Organization!
   removeOrganization(id: Int!): Organization!
   createPrediction(createPredictionInput: CreatePredictionInput!): Prediction!
-  updatePrediction(updatePredictionInput: UpdatePredictionInput!): Prediction!
-  removePrediction(id: Int!): Prediction!
   createCelebritiesOrganization(createCelebritiesOrganizationInput: CreateCelebritiesOrganizationInput!): CelebrityOrganization!
   updateCelebritiesOrganization(updateCelebritiesOrganizationInput: UpdateCelebritiesOrganizationInput!): CelebrityOrganization!
   removeCelebritiesOrganization(id: Int!): CelebrityOrganization!
@@ -223,14 +221,8 @@ input UpdateOrganizationInput {
 }
 
 input CreatePredictionInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdatePredictionInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  title: String!
+  description: String!
 }
 
 input CreateCelebritiesOrganizationInput {

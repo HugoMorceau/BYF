@@ -1,26 +1,31 @@
+import { InjectRepository } from '@nestjs/typeorm';
+import { Prediction } from './entities/prediction.entity';
 import { Injectable } from '@nestjs/common';
 import { CreatePredictionInput } from './dto/create-prediction.input';
-import { UpdatePredictionInput } from './dto/update-prediction.input';
+
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class PredictionsService {
-  create(createPredictionInput: CreatePredictionInput) {
-    return 'This action adds a new prediction';
+  constructor(
+    @InjectRepository(Prediction)
+    private predictionsRepository: Repository<Prediction>,
+  ) {}
+
+  create(createPredictionInput: CreatePredictionInput): Promise<Prediction> {
+    // eslint-disable-next-line prettier/prettier
+    const newPrediction = this.predictionsRepository.create(createPredictionInput);
+    return this.predictionsRepository.save(newPrediction);
   }
 
-  findAll() {
-    return `This action returns all predictions`;
+  findAll(): Promise<Prediction[]> {
+    return this.predictionsRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} prediction`;
-  }
-
-  update(id: number, updatePredictionInput: UpdatePredictionInput) {
-    return `This action updates a #${id} prediction`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} prediction`;
+  findOne(id: number): Promise<Prediction> {
+    // return this.predictionsRepository.findOne(id);
+    return this.predictionsRepository.findOneOrFail({
+      where: { id },
+    });
   }
 }

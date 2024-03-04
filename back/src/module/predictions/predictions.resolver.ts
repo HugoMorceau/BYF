@@ -2,7 +2,7 @@ import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { PredictionsService } from './predictions.service';
 import { Prediction } from './entities/prediction.entity';
 import { CreatePredictionInput } from './dto/create-prediction.input';
-import { UpdatePredictionInput } from './dto/update-prediction.input';
+// import { UpdatePredictionInput } from './dto/update-prediction.input';
 
 @Resolver(() => Prediction)
 export class PredictionsResolver {
@@ -25,18 +25,18 @@ export class PredictionsResolver {
     return this.predictionsService.findOne(id);
   }
 
-  @Mutation(() => Prediction)
-  updatePrediction(
-    @Args('updatePredictionInput') updatePredictionInput: UpdatePredictionInput,
-  ) {
-    return this.predictionsService.update(
-      updatePredictionInput.id,
-      updatePredictionInput,
-    );
-  }
+  // @Mutation(() => Prediction)
+  // updatePrediction(
+  //   @Args('updatePredictionInput') updatePredictionInput: UpdatePredictionInput,
+  // ) {
+  //   return this.predictionsService.update(
+  //     updatePredictionInput.id,
+  //     updatePredictionInput,
+  //   );
+  // }
 
-  @Mutation(() => Prediction)
-  removePrediction(@Args('id', { type: () => Int }) id: number) {
-    return this.predictionsService.remove(id);
-  }
+  // @Mutation(() => Prediction)
+  // removePrediction(@Args('id', { type: () => Int }) id: number) {
+  //   return this.predictionsService.remove(id);
+  // }
 }
